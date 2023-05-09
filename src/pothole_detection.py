@@ -178,7 +178,7 @@ class imageSubscriber(Node):
 
         # ---------------------------------- Part 1: Everything ----------------------------------------------------------------
 
-        self.blurred = cv2.GaussianBlur(self.masked_image, (11, 11), 0)
+        self.blurred = cv2.GaussianBlur(self.color_image, (11, 11), 0)
 
         self.gray = cv2.cvtColor(self.blurred, cv2.COLOR_RGB2GRAY)
 
@@ -314,7 +314,7 @@ class imageSubscriber(Node):
         cv2.imshow('lanes', self.lanes)
 
         self.lane_depth = cv2.bitwise_and(
-            self.depth_image, self.depth_image, mask=self.lanes
+            self.depth_image, self.depth_image, mask=self.out_binary
         )
         print('Lane Depth Published\n')
         # --------------------------------------------------------------------------------------------------------
